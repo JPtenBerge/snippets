@@ -61,4 +61,20 @@ But these references aren't standard JSON and they won't be parsed automagically
 
 ### json-ref-resolver.ts
 
-The Angular 2 version of the JSON ref resolver described above. More coming soon.
+The Angular 2 version of the JSON ref resolver described above. Interceptors don't exist anymore in Angular 2, so it's a simple injectable service. Because Angular 2 does not have a digest cycle, an `angular.copy()` nor a `filter` filter, this resolver does a flat replace of all references and circular references can exist without issues. Plus it's TypeScript, so we use can use more modern language features.
+
+```
+@Injectable()
+export class CandyApiService {
+	constructor(
+		private http: Http,
+		private jsonRefResolver: JsonRefResolver) {
+	}
+
+	query() {
+		return this.http
+			.get('api/candylotsofcandy'))
+			.map(response => this.jsonRefResolver.transform(response));
+	}
+}
+```
