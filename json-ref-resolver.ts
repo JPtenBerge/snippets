@@ -68,10 +68,6 @@ export class JsonRefResolver {
 			}
 		}
 
-		function getIdObject(id: any) {
-			return;
-		}
-
 		function cleanup() {
 			idObjects.forEach(idObject => {
 				delete idObject.$id;
