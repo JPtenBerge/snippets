@@ -2,7 +2,7 @@
 This is a small collection of snippets I created and found useful enough to share with the internet. Hopefully you will too.
 
 ## About me
-I'm JP, software engineer and trainer. I love to work with ASP.NET MVC/Web API, ASP.NET Core, Node.js and web technologies in general: HTML5, CSS3, JavaScript, jQuery, AngularJS and Angular 2.
+I'm JP, software engineer and trainer. I love to work with ASP.NET MVC/Web API, ASP.NET Core, Node.js and web technologies in general: HTML5, CSS3, JavaScript, jQuery, AngularJS and Angular (2+).
 
 
 ## Snippets
@@ -61,7 +61,7 @@ But these references aren't standard JSON and they won't be parsed automagically
 
 ### json-ref-resolver.ts
 
-The Angular 2 version of the JSON ref resolver described above. Interceptors don't exist anymore in Angular 2, so it's a simple injectable service. Because Angular 2 does not have a digest cycle, an `angular.copy()` nor a `filter` filter, this resolver does a flat replace of all references and circular references can exist without issues. Plus it's TypeScript, so we use can use more modern language features.
+The Angular version of the JSON ref resolver described above. Interceptors don't exist anymore in Angular, so it's a simple injectable service. Because Angular does not have a digest cycle, an `angular.copy()` nor a `filter` filter, this resolver does a flat replace of all references and circular references can exist without issues. Plus it's TypeScript, so we use can use more modern language features.
 
 ```
 @Injectable()
