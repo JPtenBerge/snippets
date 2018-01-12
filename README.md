@@ -61,7 +61,9 @@ But these references aren't standard JSON and they won't be parsed automagically
 
 ### json-ref-resolver.ts
 
-The Angular version of the JSON ref resolver described above. Interceptors don't exist anymore in Angular, so it's a simple injectable service. Because Angular does not have a digest cycle, an `angular.copy()` nor a `filter` filter, this resolver does a flat replace of all references and circular references can exist without issues. Plus it's TypeScript, so we use can use more modern language features.
+The Angular version of the JSON ref resolver described above. Interceptors don't exist anymore in Angular (*!), so it's a simple injectable service. Because Angular does not have a digest cycle, an `angular.copy()` nor a `filter` filter, this resolver does a flat replace of all references and circular references can exist without issues. Plus it's TypeScript, so we use can use more modern language features.
+
+* Update 2018-01-12: Angular 5 introduced a new HttpClient class which does support interceptors. I will be updating the code soon I hope.
 
 ```
 @Injectable()
