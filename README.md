@@ -77,7 +77,7 @@ export class JsonResolverInterceptor implements HttpInterceptor {
 					return ok;
 				}
 
-				let resolved = this.jsonResolver.transform(ok.body);
+				let resolved = this.jsonRefResolver.transform(ok.body);
 				return ok.clone({
 					body: resolved
 				});
