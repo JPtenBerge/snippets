@@ -68,7 +68,7 @@ Here's using the resolver with an interceptor:
 ```
 @Injectable()
 export class JsonResolverInterceptor implements HttpInterceptor {
-	constructor(private jsonResolver: JsonResolver) { }
+	constructor(private jsonRefResolver: JsonRefResolver) { }
 
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		return next.handle(req).pipe(map(
