@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class JsonResolver {
+export class JsonRefResolver {
 	transform(objects: Object | Object[]) {
 		let idObjects = [];
 		findIdObjects(objects);
