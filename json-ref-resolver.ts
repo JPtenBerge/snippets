@@ -1,16 +1,9 @@
-import { Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class JsonRefResolver {
-	transform(resp: Response) {
-		
-		if (!resp.headers.get('Content-Type') || resp.headers.get('Content-Type').startsWith('application/json') === false) {
-			return resp;
-		}
-
-		let idObjects: any[] = [];
-		let objects = resp.json();
+export class JsonResolver {
+	transform(objects: Object | Object[]) {
+		let idObjects = [];
 		findIdObjects(objects);
 		resolve(objects);
 		cleanup();
