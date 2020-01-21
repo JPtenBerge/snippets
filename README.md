@@ -42,8 +42,9 @@ $http.get('api/movies').then(response => { ... });
 ```
 
 #### Background 
-I had a REST API that returned data with circular references, which I actually needed in my application. Using ASP.NET MVC and the Web API, I configured it to preserve references during serialization:
+I had a REST API that returned data with circular references, which I actually needed in my application. Using ASP.NET MVC, ASP.NET Web API and later on ASP.NET Core<sup>1</sup>, I configured it to preserve references during serialization:
 ```
+// ASP.NET Web API
 public static class WebApiConfig
 {
 	public static void Register(HttpConfiguration config)
@@ -57,7 +58,16 @@ public static class WebApiConfig
 	}
 }
 ```
+```
+// ASP.NET Core
+services.AddControllers().AddNewtonsoftJson(options =>
+{
+	options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
+});
+```
 But these references aren't standard JSON and they won't be parsed automagically. I found some solutions on the internet, but some parsers assumed `$ref` contained a path to the object rather than a number ([cycle.js from Douglas Crockford](https://github.com/douglascrockford/JSON-js/blob/master/cycle.js)). Others weren't catered to AngularJS in that using `filter` or `angular.copy()` in the resolved object tree resulted in circular reference errors.
+
+1. Up until ASP.NET Core 2.2, `Newtonsoft.Json` was used for serialization and serialization behaved exactly the same. Starting with ASP.NET Core 3, a new serializer `System.Text.Json` was introduced. This serializer [doesn't support circular references yet](https://github.com/dotnet/corefx/issues/38579).
 
 ### json-ref-resolver.ts
 
@@ -73,7 +83,8 @@ export class JsonResolverInterceptor implements HttpInterceptor {
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		return next.handle(req).pipe(map(
 			(ok: HttpResponse<any>) => {
-				if (!ok.headers || !ok.headers.get('content-type') || ok.headers.get('content-type').startsWith('application/json') === false) {
+				if (!ok.headers || !ok.headers.get('content-type') || 
+				    ok.headers.get('content-type').startsWith('application/json') === false) {
 					return ok;
 				}
 
