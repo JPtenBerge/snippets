@@ -2,7 +2,7 @@
 This is a small collection of snippets I created and found useful enough to share with the internet. Hopefully you will too.
 
 ## About me
-I'm JP, software engineer and trainer. I love to work with ASP.NET MVC/Web API, ASP.NET Core, Node.js and web technologies in general: HTML5, CSS3, JavaScript, jQuery, AngularJS and Angular (2+).
+I'm JP, software engineer and trainer. I love to work with ASP.NET MVC/Web API, ASP.NET Core, Node.js and web technologies in general: HTML5, CSS3, JavaScript, TypeScript, Angular, Svelte, ...
 
 
 ## Snippets
